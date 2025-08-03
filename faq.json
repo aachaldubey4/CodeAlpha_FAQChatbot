@@ -1,0 +1,57 @@
+[
+    {
+        "question": "What is artificial intelligence?",
+        "answer": "Artificial Intelligence is the simulation of human intelligence by machines.",
+        "link": "https://en.wikipedia.org/wiki/Artificial_intelligence"
+    },
+    {
+        "question": "What is machine learning?",
+        "answer": "Machine Learning is a part of AI that allows computers to learn from data.",
+        "link": "https://en.wikipedia.org/wiki/Machine_learning"
+    },
+    {
+        "question": "What are the uses of AI?",
+        "answer": "AI is used in self-driving cars, virtual assistants, healthcare, finance, and gaming.",
+        "link": "https://en.wikipedia.org/wiki/Applications_of_artificial_intelligence"
+    },
+    {
+        "question": "What is deep learning?",
+        "answer": "Deep Learning is a subset of machine learning that uses neural networks with many layers.",
+        "link": "https://en.wikipedia.org/wiki/Deep_learning"
+    },
+    {
+        "question": "What is supervised learning?",
+        "answer": "Supervised learning is when the model is trained on labeled data.",
+        "link": "https://en.wikipedia.org/wiki/Supervised_learning"
+    },
+    {
+        "question": "What is unsupervised learning?",
+        "answer": "Unsupervised learning is when the model finds patterns in data without labels.",
+        "link": "https://en.wikipedia.org/wiki/Unsupervised_learning"
+    },
+    {
+        "question": "What is a neural network?",
+        "answer": "A neural network is a computer system modeled on the human brain to recognize patterns.",
+        "link": "https://en.wikipedia.org/wiki/Artificial_neural_network"
+    },
+    {
+        "question": "What is a chatbot?",
+        "answer": "A chatbot is an AI program that simulates conversation with users.",
+        "link": "https://en.wikipedia.org/wiki/Chatbot"
+    },
+    {
+        "question": "How does a chatbot work?",
+        "answer": "It takes input, processes it using NLP, and gives a relevant response.",
+        "link": "https://en.wikipedia.org/wiki/Chatbot#How_chatbots_work"
+    },
+    {
+        "question": "What is NLP?",
+        "answer": "Natural Language Processing helps computers understand and respond to human language.",
+        "link": "https://en.wikipedia.org/wiki/Natural_language_processing"
+    },
+    {
+        "question": "Who created you?",
+        "answer": "I was created by Aachal Dubey during her internship at CodeAlpha using Python, Flask, and AI!",
+        "link": "https://github.com/aachaldubey4"
+    }
+]

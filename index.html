@@ -1,0 +1,220 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FAQ Chatbot</title>
+    <style>
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Optional: Dark Mode Styles */
+        .dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        .dark-mode #chatbox {
+            background-color: #1e1e1e;
+            color: white;
+        }
+
+        body {
+            font-family: Arial;
+            background: #f0f0f0;
+            padding: 30px;
+        }
+
+        #chatbox {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .message {
+            margin: 10px 0;
+        }
+
+        .user {
+            color: blue;
+        }
+
+        .bot {
+            color: green;
+        }
+
+        .dark-mode {
+            background: #1e1e1e;
+            color: white;
+        }
+
+        .dark-mode #chatbox {
+            background: #2e2e2e;
+            color: white;
+        }
+
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(26px);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chatbox">
+        <h2>Ask Me Anything!</h2>
+        <div class="theme-toggle">
+            <label>Dark Mode:</label>
+            <label class="switch">
+                <input type="checkbox" id="themeSwitch" onchange="toggleTheme()">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <input id="question" type="text" placeholder="Type your question..." style="width: 80%;">
+        <button onclick="ask()">Ask</button>
+        <div id="response"></div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+        async function ask() {
+            const question = document.getElementById("question").value;
+            const responseDiv = document.getElementById("response");
+
+            responseDiv.innerHTML += `<p class="message user"><strong>You:</strong> ${question}</p>`;
+
+            const response = await fetch("/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ question })
+            });
+
+            const data = await response.json();
+            let botHTML = `<p class="message bot"><strong>Bot:</strong> ${data.answer}`;
+
+            if (data.link) {
+                botHTML += `<br><a href="${data.link}" target="_blank">Learn more</a>`;
+            }
+
+            // Suggestions
+            if (data.suggestions && data.suggestions.length > 0) {
+                botHTML += `<br><em>Did you mean:</em><ul>`;
+                data.suggestions.forEach(s => {
+                    botHTML += `<li>${s}</li>`;
+                });
+                botHTML += `</ul>`;
+            }
+
+            // Feedback
+            botHTML += `<br><button onclick="alert('Thanks for your feedback! 😊')">👍 Yes</button>
+<button onclick="alert('Sorry! I’ll try to improve! 😔')">👎 No</button>`;
+
+            botHTML += `</p>`;
+            responseDiv.innerHTML += botHTML;
+
+            document.getElementById("question").value = "";
+        }
+    </script>
+</body>
+
+</html>
